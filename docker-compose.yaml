@@ -1,9 +1,9 @@
 version: "3.6"
 
 services:
-  postgres-2:
-    hostname: postgres-2
-    container_name: postgres-2
+  postgres:
+    hostname: postgres
+    container_name: postgres
     image: postgres:14.6-alpine
     environment:
       - POSTGRES_USER=postgres
@@ -22,24 +22,22 @@ services:
     restart: unless-stopped
     ports:
       - "5433:5432"
-  api-2:
-    hostname: api-2
-    container_name: "api-2"
+  api:
+    hostname: api
+    container_name: "api"
     build:
-      context: ./backend
+      context: ./backend/src
       dockerfile: Dockerfile
-    command: bash -c "alembic upgrade head && uvicorn backend.src.main:app --host 0.0.0.0  --port 8080"
+    command: bash -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0  --port 7000"
 
     depends_on:
-      - postgres-2
+      - postgres
     ports:
       # - 443:443
-      - 8080:8080
+      - 7000:7000
     volumes:
       - ./backend:/app
     restart: unless-stopped
-
-
 
 volumes:
   postgres_data:

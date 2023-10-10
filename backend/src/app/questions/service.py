@@ -1,7 +1,7 @@
 from fastapi import Depends
 import requests
-from questions.schema import ResponseModel
-from questions.repositories import SqlalchemyRepository
+
+from .repositories import SqlalchemyRepository
 
 
 class QuestionService:

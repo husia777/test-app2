@@ -1,15 +1,12 @@
-
-from datetime import datetime
-from sqlalchemy import NullPool, DateTime
+from sqlalchemy import NullPool
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy.sql import func
-
-from config import settings
+from sqlalchemy.orm import DeclarativeBase
+from ..config import settings
 
 engine = create_async_engine(
-    settings.sqlalchemy_database_url, echo=True, future=True, poolclass=NullPool,
+    settings.sqlalchemy_database_url, echo=True, future=True,
+    poolclass=NullPool,
 )
 AsyncSessionLocal = async_sessionmaker(
     engine, class_=AsyncSession, expire_on_commit=False)
