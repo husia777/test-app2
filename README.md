@@ -4,4 +4,4 @@
 2) git clone https://github.com/husia777/test-app2.git
 3) cd test-app2
 4) docker compose up --build
-5) 
+5) переходим по этой ссылке и проверяем http://0.0.0.0:7000/docs
