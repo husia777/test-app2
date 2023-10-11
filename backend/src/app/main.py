@@ -2,6 +2,9 @@ from fastapi import FastAPI, Depends
 
 from app.questions.service import QuestionService
 
+# from questions.service import QuestionService
+
+
 app = FastAPI()
 
 

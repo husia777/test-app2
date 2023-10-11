@@ -12,6 +12,7 @@ class QuestionService:
         data = requests.get(
             f'https://jservice.io/api/random?count={questions_num}'
         ).json()
-        await self.repository.save(data)
-
+        while self.repository.counter == 0:
+            await self.repository.check_question_and_save(data)
+        self.repository.counter = 0
         return await self.repository.get_previous_answer_or_none()
